@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require File.expand_path('../lib/alchemy', __FILE__)
+require 'benchmark'
+
+Slop.parse :help => true do
+  banner "./generate [options]\n"
+
+  on 'foo', 'fancy testing method' do
+    circ = Alchemy.generate_transmutation_circle
+#    ap circ
+    circ.draw.write('/home/brandon/web/test.png') if circ != nil
+  end
+
+  on 'O', 'open-irb-session', 'Open an IRB session with everything loaded' do
+    system('irb -I lib -ralchemy')
+  end
+
+end
