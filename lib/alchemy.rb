@@ -29,8 +29,7 @@ module Alchemy
 
     # Prep some grid variables
     grid_width = side_width * 100
-    grid_center = grid_width / 2
-    grid_origin = [grid_center, grid_center]
+    grid_origin = [grid_width / 2, grid_width / 2]
 
     # Init our RVG object and then drop into a block to work on it
     rvg = RVG.new(side_width.in, side_width.in).viewbox(0, 0, grid_width, grid_width) do | canvas |
@@ -50,19 +49,30 @@ module Alchemy
       border_padding = 0.03 # Percentage of total canvas to shrink in on before drawing
       working_width = grid_width - (grid_width * border_padding)
 
+      # Draw a border for our circle
+      working_width = draw_border(
+        :canvas => canvas,
+        :working_width => working_width,
+        :origin => grid_origin,
+        :point_count => point_count,
+        :stroke_width => stroke_width,
+        :runes_around_border => true,
+#        :zig_zag_around_border => true,
+#        :blank_space_around_border => true
+      )
+
       # Spiral Circle
-      if false
-      point_count = 4 # 2, 3, 4, 5 - 12
+#      if false
+#      point_count = 4 # 2, 3, 4, 5 - 12
       working_shift = draw_spiral_circle(
         :canvas => canvas,
         :origin => grid_origin,
-        :working_width => working_width,
+        :working_width => working_width - (working_width * 0.15),
         :point_count => point_count,
         :stroke_width => stroke_width,
         :stroke_color => stroke_color,
-        :draw_container => true
       )
-      end
+#      end
 
       # Draw a summoning circle
 #      if false
@@ -73,7 +83,7 @@ module Alchemy
         :point_count => point_count,
         :stroke_width => stroke_width,
         :stroke_color => stroke_color,
-#        :interconnect_circles => false
+        :interconnect_circles => false
       )
       working_width = working_shift
 #      end
@@ -102,6 +112,7 @@ end
 require_relative 'alchemy/borders'
 require_relative 'alchemy/shapes'
 require_relative 'alchemy/runes'
+require_relative 'alchemy/spirals'
 Dir.glob("#{File.dirname(__FILE__)}/alchemy/circles/*").each do | wrapper |
- require wrapper
+  require wrapper
 end

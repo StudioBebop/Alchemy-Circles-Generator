@@ -166,6 +166,7 @@ module Alchemy
 
     # Draw the polygon
     canvas.g do | shapes |
+      shapes.styles(:fill_opacity => 0.0)
       shapes.styles(options[:styles]) if options[:styles]
       shapes.polygon(
         points_x, points_y

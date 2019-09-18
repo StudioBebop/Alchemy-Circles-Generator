@@ -16,7 +16,6 @@ module Alchemy
   #  - stroke_width
   #  - stroke_color
   #  - recurse_depth
-  #  - draw_border
   #
   ###
 
@@ -32,18 +31,6 @@ module Alchemy
     stroke_color = @default_stroke_color if not stroke_color
     recurse_depth = options[:recurse_depth]
     recurse_depth = 3 if not recurse_depth
-    draw_border = options[:draw_border]
-    draw_border = true if not options.has_key? :draw_border
-
-    # Draw our outer circle
-    if draw_border
-      draw_circle(
-        :canvas => canvas,
-        :radius => working_width / 2,
-        :origin => origin
-      )
-      working_width -= stroke_width * 2
-    end
 
     # Draw our border polygon that will connect all of our recursed polygons
     draw_polygon(

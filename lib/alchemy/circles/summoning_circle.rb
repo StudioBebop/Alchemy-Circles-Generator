@@ -13,7 +13,6 @@ module Alchemy
   #  - point_count
   #
   # Optional Args:
-  #  - draw_border
   #  - stroke_width
   #  - stroke_color
   #  - rune_circle_size_ratio (percentage of working_width that our rune cicles will be)
@@ -35,20 +34,6 @@ module Alchemy
     stroke_color = @default_stroke_color if not stroke_color
     interconnect_circles = options[:interconnect_circles]
     interconnect_circles = true if not options.has_key? :interconnect_circles
-    draw_border = options[:draw_border]
-    draw_border = true if not options.has_key? :draw_border
-
-    # Draw aour border circle(s)
-    working_width = draw_border(
-      :canvas => canvas,
-      :working_width => working_width,
-      :origin => origin,
-      :point_count => point_count,
-      :stroke_width => stroke_width,
-      :runes_around_border => true,
-#      :zig_zag_around_border => true,
-#      :blank_space_around_border => true
-    ) if draw_border
 
     # Draw the polygon that will connect the cirlces together
     draw_polygon(
