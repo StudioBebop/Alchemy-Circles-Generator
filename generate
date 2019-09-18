@@ -7,7 +7,12 @@ Slop.parse :help => true do
   banner "./generate [options]\n"
 
   on 'foo', 'fancy testing method' do
-    circ = Alchemy.generate_transmutation_circle
+    # Turn string into seed
+    seed = "Pastel"
+    ap [seed, seed.to_seed]
+    seed = seed.to_seed
+#    seed = nil
+    circ = Alchemy.generate_transmutation_circle seed
 #    ap circ
     circ.draw.write('/home/brandon/web/test.png') if circ != nil
   end

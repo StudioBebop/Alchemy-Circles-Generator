@@ -9,6 +9,14 @@ require 'rvg/rvg'
 include Magick
 Magick.set_log_event_mask 'Exception'
 
+class String
+  def to_seed
+    chars = self.downcase.split("")
+    chars.map! { |x| "#{x.ord}" }
+    return (chars.join "").to_i
+  end
+end
+
 module Alchemy
   # Set up some paths to things we might need
   @font_root = File.expand_path('../../data/fonts/', __FILE__)
@@ -21,6 +29,9 @@ module Alchemy
   @default_stroke_color = 'white'
 
   def self.generate_transmutation_circle seed=nil, side_width=@default_size
+    # Set our seed if we have one
+    srand(seed)
+
     # Set up the DPI for rendering
     RVG::dpi = @default_dpi
 
@@ -62,7 +73,7 @@ module Alchemy
       )
 
       # Spiral Circle
-#      if false
+      if false
 #      point_count = 4 # 2, 3, 4, 5 - 12
       working_shift = draw_spiral_circle(
         :canvas => canvas,
@@ -72,10 +83,10 @@ module Alchemy
         :stroke_width => stroke_width,
         :stroke_color => stroke_color,
       )
-#      end
+      end
 
       # Draw a summoning circle
-#      if false
+      if false
       working_shift = draw_summoning_circle(
         :canvas => canvas,
         :origin => grid_origin,
@@ -86,21 +97,31 @@ module Alchemy
         :interconnect_circles => false
       )
       working_width = working_shift
-#      end
+      end
 
       # Draw a recursive polygons circle
       if false
-      point_count = 6 # 5, 6, 8, 9, 10, 12
-      draw_summoning_circle(
+#      point_count = 6 # 5, 6, 8, 9, 10, 12
+       draw_recursive_polygons_circle(
         :canvas => canvas,
         :origin => grid_origin,
         :working_width => working_width,
         :point_count => point_count,
         :stroke_width => stroke_width,
-        :stroke_color => stroke_color
+        :stroke_color => stroke_color,
+        :recurse_depth => 30
       )
       end
 
+      # Draw a random shapes circle
+      draw_random_polygons_circle(
+        :canvas => canvas,
+        :origin => grid_origin,
+        :working_width => working_width,
+        :stroke_width => stroke_width,
+        :stroke_color => stroke_color,
+#        :recurse_depth => 30
+      )
     end
 
     # Return our RVG object for writing or further manipuatlion
