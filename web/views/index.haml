@@ -1,0 +1,11 @@
+%div{:class => 'grid-x'}
+  %div{:class => 'cell auto'}
+    %center
+      %img{:src => '/img/loading.gif',
+           'data-src' => "/circle_image?s=#{@seed_text}",
+           :style => 'max-height:600px; max-width:600px; height:auto; width:auto;'}
+
+:javascript
+  $(document).ready(function() {
+    $("img").unveil();
+  });

@@ -2,4 +2,3 @@ Gemfile.lock
 .bundle
 web/log
 web/tmp
-web/

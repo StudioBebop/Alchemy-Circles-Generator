@@ -16,11 +16,14 @@ Slop.parse :help => true do
 #    seed = nil
     options = {
       :seed => seed.to_seed,
-      :dpi => 600,
+      :dpi => 200,
       :circle_type => :random_polygons_circle
     }
     circ = Alchemy.generate_alchemy_circle options
-    circ.draw.write('/home/brandon/web/test.png') if circ != nil
+    circ = circ.draw
+    circ.format = 'png'
+    ap circ.to_blob
+#    circ.draw.write('/home/brandon/web/test.png') if circ != nil
   end
 
   on 'O', 'open-irb-session', 'Open an IRB session with everything loaded' do

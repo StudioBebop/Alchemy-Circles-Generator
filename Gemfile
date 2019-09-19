@@ -6,6 +6,7 @@ gem 'slop', '~> 3.1.0'
 gem 'rmagick'
 gem 'ttfunk'
 gem 'betterlorem'
+gem 'random-word'
 
 # Web Stuff
 gem 'haml'

@@ -15,6 +15,14 @@ class String
     chars.map! { |x| "#{x.ord}" }
     return (chars.join "").to_i
   end
+
+  def to_random_seed_phrase
+    str = self.split(" ").map { |x| x.capitalize }
+    str = str.join ""
+    str = str.split("_").map { |x| x.capitalize }
+    str = str.join ""
+    return str
+  end
 end
 
 module Alchemy

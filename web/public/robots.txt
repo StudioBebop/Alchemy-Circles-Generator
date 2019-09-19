@@ -1,0 +1,7 @@
+Sitemap: https://mangahunters.com/sitemap.xml.gz
+
+User-agent: *
+Disallow: /toggle_favorite
+Disallow: /add_to_cart
+Disallow: /cart
+Disallow: /get_cart_items

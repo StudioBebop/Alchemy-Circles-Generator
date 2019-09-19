@@ -1,0 +1,75 @@
+!!!
+%html.no-js{:lang => "en"}
+  %head
+    %meta{:charset => "utf-8"}
+    %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
+
+    - if @page_title
+      %title= "#{@page_title} | Alchemy Circle Generator"
+    - else
+      %title Alchemy Circle Generator
+
+    -# CSS
+    %link{:href => "css/foundation.css", :rel => "stylesheet"}
+    %link{:href => "css/app.css", :rel => "stylesheet"}
+    %link{:href => "/css/style.css", :rel => "stylesheet"}
+
+    -# Javascript
+    %script{:src => "/js/vendor/jquery.js"}
+    %script{:src => "/js/vendor/what-input.js"}
+    %script{:src => "/js/vendor/foundation.js"}
+    %script{:src => "/js/app.js"}
+    %script{:src => "/js/jquery.unveil.js"}
+
+  %body
+    -# Start actual page content
+    %div{:class => 'grid-cotainer full',
+         :style => 'padding-top: 20px; padding-left: 20px; padding-right: 20px; background-color: #333'}
+      %div{:class => 'grid-x'}
+        %div{:class => 'cell large-4'}
+          %h3{:style => 'margin-top: -10px'}
+            %a{:style => 'color: #fff',
+               :href => '/'}
+              Alchemy Circle Generator
+        %div{:class => 'cell auto'}
+          %ul{:class => 'menu',
+              :style => 'margin-top: -8px'}
+            -#%li
+            -#  %a{:href => '#',
+            -#     :class => 'success button'}
+            -#    Lots of Circles!
+            %li
+              %p{:style => 'padding-right: 20px'}
+            %li
+              %a{:href => '/',
+                 :class => 'success button'}
+                Random Circle
+            %li
+              %p{:style => 'padding-right: 20px'}
+            - if not @is_multiple_circles
+              %li
+                %a{:href => "/circle_image?s=#{@seed_text}&size=large",
+                   :class => 'secondary button'}
+                  Download Hi-Res
+            %li
+              %p{:style => 'padding-right: 20px'}
+            %form{:method => 'get'}
+              %li
+                %div{:class => 'input-group'}
+                  %input{:type => 'text',
+                         :name => 's',
+                         :class => 'input-group-field',
+                         :placeholder => 'Enter Name for Custom Circle',
+                         :style => 'width: 320px'}
+                  %div{:class => 'input-group-button'}
+                    %input{:type => 'submit',
+                           :class => 'button',
+                           :value => 'Custom Circle'}
+
+    -# Start actual page content
+    %div{:class => 'grid-cotainer full',
+         :style => 'padding: 20px'}
+      = yield
+
+    :javascript
+      $(document).foundation();
