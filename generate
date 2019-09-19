@@ -9,11 +9,17 @@ Slop.parse :help => true do
   on 'foo', 'fancy testing method' do
     # Turn string into seed
     seed = "Pastel"
+#    seed = "Sally"
+#    seed = "Ashley"
+    seed = "Tiffy"
     ap [seed, seed.to_seed]
-    seed = seed.to_seed
 #    seed = nil
-    circ = Alchemy.generate_transmutation_circle seed
-#    ap circ
+    options = {
+      :seed => seed.to_seed,
+      :dpi => 600,
+      :circle_type => :random_polygons_circle
+    }
+    circ = Alchemy.generate_alchemy_circle options
     circ.draw.write('/home/brandon/web/test.png') if circ != nil
   end
 

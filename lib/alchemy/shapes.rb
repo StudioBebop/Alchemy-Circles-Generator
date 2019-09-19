@@ -64,7 +64,6 @@ module Alchemy
   # Optional Args:
   #  - stroke_color
   #  - draw_center_point (true | false) :default => false
-  #  - draw_center_rune (true | false) :default => false
   #  - initial_offset (angle offset to add to all of our angle calculations)
   #  - rune_char
   #  - font_path
@@ -78,8 +77,6 @@ module Alchemy
     stroke_color = @default_stroke_color if not options[:stroke_color]
     draw_center_point = options[:draw_center_point]
     draw_center_point = false if not draw_center_point
-    draw_center_rune = options[:draw_center_rune]
-    draw_center_rune = false if not draw_center_rune
     initial_offset = options[:initial_offset]
     initial_offset = 0 if not initial_offset
     if options[:initial_offset]
@@ -89,8 +86,8 @@ module Alchemy
     # Draw our shape
     canvas.g do | shapes |
       # Set styles
-      shapes.styles(options[:styles]) if options[:styles]
       shapes.styles(:fill_opacity => 1.0)
+      shapes.styles(options[:styles]) if options[:styles]
 
       # Draw circle
       shapes.circle(
@@ -113,7 +110,7 @@ module Alchemy
       end
 
       # Draw a rune if we need to
-      if draw_center_rune
+      if options[:rune_char]
         draw_rune(
           :canvas => shapes,
           :working_width => radius * 2,

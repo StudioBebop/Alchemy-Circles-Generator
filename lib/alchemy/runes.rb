@@ -63,7 +63,7 @@ module Alchemy
 #      {:name => 'staves',
 #       :chars => ["༈", "༆", "༒"]},
       {:name => 'greekish-symbols',
-       :chars => ["\u2650", "\u2649", "♆", "♅", "☿", "☦", "Ꮸ", "♆"]},
+       :chars => ["\u2650", "\u2649", "♆", "♅", "☿", "☦", "♆"]},
       {:name => 'swirly-symbols',
       :chars => ["స", "৯", "৬", "ঌ", "ঔ", "ঙ", "১", "৩"]}
     ]
