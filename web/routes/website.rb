@@ -43,8 +43,8 @@ module Alchemy
       # Return circle
       content_type 'image/png'
       if params['size'] == 'large'
-        file_name = "#{@seed_text}.png"
-        headers "Content-Disposition" => "attachment;filename=#{CGI.escape file_name}.pdf",
+        file_name = "#{seed_text}"
+        headers "Content-Disposition" => "attachment;filename=#{CGI.escape file_name}.png",
                 "Content-Type" => "image/png"
         return circ.to_blob
       end
@@ -55,7 +55,6 @@ module Alchemy
       @seeds = []
       total_circles = 30
       0.upto(total_circles - 1).each { |x| @seeds << RandomWord.phrases.next.to_random_seed_phrase }
-      ap @seeds
 
       haml :lots_of_circles
     end
