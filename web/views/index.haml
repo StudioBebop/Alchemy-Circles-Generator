@@ -7,5 +7,8 @@
 
 :javascript
   $(document).ready(function() {
-    $("img").unveil();
+    // load on a slight delay for maximum UX
+    setTimeout(function(){
+      $("img").unveil();
+    }, 6);
   });
