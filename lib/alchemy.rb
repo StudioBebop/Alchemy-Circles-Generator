@@ -17,9 +17,8 @@ class String
   end
 
   def to_random_seed_phrase
-    str = self.split(" ").map { |x| x.capitalize }
-    str = str.join ""
-    str = str.split("_").map { |x| x.capitalize }
+    str = self.gsub("_", " ")
+    str = str.split(" ").map { |x| x.capitalize }
     str = str.join ""
     return str
   end

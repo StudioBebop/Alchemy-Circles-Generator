@@ -8,6 +8,9 @@ Slop.parse :help => true do
 
   on 'foo', 'fancy testing method' do
     # Turn string into seed
+    ap RandomWord.phrases.next.to_random_seed_phrase
+    exit
+
     seed = "Pastel"
 #    seed = "Sally"
 #    seed = "Ashley"
