@@ -6,12 +6,11 @@ module Alchemy
     ############
 
     get ['/', '/random_circle'] do
-      seed_text = "testbois town . biz"
       redirect "/generate_circle?s=#{RandomWord.phrases.next.to_random_seed_phrase}"
     end
 
     get '/generate_circle' do
-      @seed_text = params['s']
+      @seed_text = params['s'] || RandomWord.phrases.next.to_random_seed_phrase
       @seed = @seed_text.to_seed
       haml :index
     end
