@@ -10,6 +10,7 @@ module Alchemy
     end
 
     get '/generate_circle' do
+      redirect "/generate_circle?s=#{RandomWord.phrases.next.to_random_seed_phrase}" if not params['s']
       @seed_text = params['s'] || RandomWord.phrases.next.to_random_seed_phrase
       @seed = @seed_text.to_seed
       haml :index
