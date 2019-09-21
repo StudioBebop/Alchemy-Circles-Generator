@@ -11,6 +11,7 @@ module Alchemy
 
     get '/generate_circle' do
       redirect "/generate_circle?s=#{RandomWord.phrases.next.to_random_seed_phrase}" if not params['s']
+      redirect "/generate_circle?s=#{RandomWord.phrases.next.to_random_seed_phrase}" if params['s'].length == 0
       @seed_text = params['s'] || RandomWord.phrases.next.to_random_seed_phrase
       @seed = @seed_text.to_seed
       haml :index
